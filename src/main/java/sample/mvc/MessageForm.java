@@ -23,9 +23,6 @@ import sample.data.Message;
  * Model object used for creating a {@link Message}. This is good practice to
  * ensure that malcious users do not set fields they should not (i.e. an id when
  * creating a {@link Message}).
- *
- * @author Rob Winch
- *
  */
 public class MessageForm {
 

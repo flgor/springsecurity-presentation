@@ -28,8 +28,6 @@ import sample.data.UserRepository;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Rob Winch
- *
  */
 @Service
 public class UserRepositoryUserDetailsService implements UserDetailsService {

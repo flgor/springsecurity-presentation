@@ -34,8 +34,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * In a real system use {@link PasswordEncoder} to ensure the password is secured
  * properly. This demonstration does not address this due to time restrictions.
  * </p>
- *
- * @author Rob Winch
  */
 @Entity
 public class User implements Serializable {

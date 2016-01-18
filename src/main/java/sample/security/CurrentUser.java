@@ -37,9 +37,6 @@ import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
  * Security's. For simplicity, you could instead use the
  * {@link AuthenticationPrincipal} directly.
  * </p>
- *
- * @author Rob Winch
- *
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)

@@ -15,15 +15,7 @@
  */
 package sample.mvc;
 
-import java.security.Principal;
-import java.util.List;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,33 +24,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import sample.data.ActiveWebSocketUserRepository;
-import sample.data.InstantMessage;
 import sample.data.Message;
 import sample.data.MessageRepository;
 import sample.data.User;
 import sample.data.UserRepository;
 import sample.security.CurrentUser;
 
+import javax.validation.Valid;
+
 /**
  * Controller for managing {@link Message} instances.
- *
- * @author Rob Winch
- *
  */
 @Controller
 @RequestMapping("/")
 public class MessageController {
     private MessageRepository messageRepository;
     private UserRepository userRepository;
-	private SimpMessageSendingOperations messagingTemplate;
-	private ActiveWebSocketUserRepository activeUserRepository;
 
     @Autowired
-    public MessageController(ActiveWebSocketUserRepository activeUserRepository,SimpMessageSendingOperations messagingTemplate,MessageRepository messageRepository,UserRepository userRepository) {
-    	this.activeUserRepository = activeUserRepository;
-    	this.messagingTemplate = messagingTemplate;
+    public MessageController(MessageRepository messageRepository,UserRepository userRepository) {
         this.messageRepository = messageRepository;
         this.userRepository = userRepository;
     }
@@ -69,17 +53,6 @@ public class MessageController {
         return new ModelAndView("messages/inbox", "messages", messages);
     }
     
-    @RequestMapping("/im")
-    public String im() {
-    	return "messages/im";
-    }
-    
-    @MessageMapping("/im")
-    public void im(InstantMessage im, Principal principal) {
-        im.setFrom(principal.getName());
-        messagingTemplate.convertAndSendToUser(im.getTo(),"/queue/messages",im);
-        messagingTemplate.convertAndSendToUser(im.getFrom(),"/queue/messages",im);
-    }
 
     @RequestMapping(value = "{id}", method=RequestMethod.GET)
     public ModelAndView view(@PathVariable Long id) {
@@ -98,11 +71,7 @@ public class MessageController {
     public String createForm(@ModelAttribute MessageForm messageForm) {
         return "messages/compose";
     }
-    
-    @SubscribeMapping("/users")
-	public List<String> subscribeMessages() throws Exception {
-		return activeUserRepository.findAllActiveUsers();
-	}
+
 
     @RequestMapping(method=RequestMethod.POST)
     public String create(@CurrentUser User currentUser, @Valid MessageForm messageForm, BindingResult result, RedirectAttributes redirect) {
@@ -120,13 +89,7 @@ public class MessageController {
         message.setTo(to);
         message.setFrom(currentUser);
 
-        message = messageRepository.save(message);
-        
-        InstantMessage im = new InstantMessage();
-        im.setMessage(message.getText());
-        im.setTo(message.getTo().getEmail());
-        im.setFrom(currentUser.getEmail());
-        
+        messageRepository.save(message);
         redirect.addFlashAttribute("globalMessage", "Message added successfully");
         return "redirect:/";
     }

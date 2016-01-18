@@ -23,8 +23,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Initializes the H2 {@link WebServlet} so we can access our in memory database
  * from the URL "/h2".
- *
- * @author Rob Winch
  */
 @Configuration
 public class H2Initializer {

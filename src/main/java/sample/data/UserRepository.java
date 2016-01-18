@@ -20,8 +20,6 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Allows managing {@link User} instances.
  *
- * @author Rob Winch
- *
  */
 public interface UserRepository extends CrudRepository<User, Long> {
 

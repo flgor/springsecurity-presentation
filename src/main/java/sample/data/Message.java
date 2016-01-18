@@ -28,8 +28,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * A Message is an entity that can be sent to a {@link User}.
- *
- * @author Rob Winch
  */
 @Entity
 public class Message {

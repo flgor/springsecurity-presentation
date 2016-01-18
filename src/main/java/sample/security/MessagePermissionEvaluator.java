@@ -24,8 +24,6 @@ import sample.data.User;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Rob Winch
- *
  */
 @Component
 public class MessagePermissionEvaluator implements PermissionEvaluator {

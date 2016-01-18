@@ -26,9 +26,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import sample.Application;
 import sample.data.MessageRepository;
 
-/**
- * @author Rob Winch
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WithMockUser

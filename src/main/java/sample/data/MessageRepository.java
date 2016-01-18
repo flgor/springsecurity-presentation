@@ -22,8 +22,6 @@ import org.springframework.security.access.prepost.PostAuthorize;
 /**
  * Manages {@link Message} instances
  *
- * @author Rob Winch
- *
  */
 public interface MessageRepository extends CrudRepository<Message, Long> {
 

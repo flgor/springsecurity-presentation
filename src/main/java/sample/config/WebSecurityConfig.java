@@ -34,13 +34,13 @@ import org.springframework.security.data.repository.query.SecurityEvaluationCont
 public class WebSecurityConfig
     extends WebSecurityConfigurerAdapter {
 
-    @Override
+/*    @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-            /*.csrf().disable()*/
+            *//*.csrf().disable()*//*
             .authorizeRequests()
-                .antMatchers("/resources/**", "/signup").permitAll()
+                .antMatchers("/resources*//**", "/signup").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -49,7 +49,7 @@ public class WebSecurityConfig
                 .and()
             .logout()
                 .permitAll();
-    }
+    }*/
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService userDetailsService) throws Exception {

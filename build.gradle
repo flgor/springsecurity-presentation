@@ -10,14 +10,13 @@ buildscript {
 apply plugin: 'spring-boot'
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 group = 'samples'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 ext.springSecurityVersion = '4.0.0.M2'
 ext.springVersion = '4.1.0.RELEASE'
@@ -65,4 +64,8 @@ dependencies {
 	testCompile "org.springframework.boot:spring-boot-starter-test",
 			"org.springframework.security:spring-security-test:$springSecurityVersion"
 
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.3'
 }

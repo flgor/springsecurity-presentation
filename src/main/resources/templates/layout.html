@@ -59,7 +59,7 @@
         text-align: center;
       }
       a {
-          color: green;
+          color: black;
       }
       .navbar-form {
         margin-left: 1em;
@@ -79,7 +79,6 @@
       <div class="navbar navbar-inverse navbar-static-top">
         <div class="navbar-inner">
           <div class="container">
-            <a class="brand" th:href="@{/}"><img th:src="@{/resources/img/logo.png}" alt="Spring Security Sample"/></a>
 
 <div class="nav-collapse collapse"
      th:with="currentUser=${#httpServletRequest.userPrincipal?.principal}">
